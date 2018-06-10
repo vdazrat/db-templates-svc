@@ -37,7 +37,9 @@ function seed(knex, Promise) {
 			console.log('deleting ... ', name);
 			return await knex.raw(`DROP TABLE ${name} CASCADE`);
 		} catch(e) {
-			console.log('could not delete ... ', name);
+			if (e.routine !== 'DropErrorMsgNonExistent') {
+				console.log('could not delete ... rerun the flushdb script', name, e.message);
+			}			
 			return null;
 		}
 	};

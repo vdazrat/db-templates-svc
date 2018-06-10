@@ -35,7 +35,7 @@ const makeUser = (user) => {
 	};
 };
 
-const userMap = users.map(getUser);
+const userMap = users.map(makeUser);
 
 exports.seed = function(knex, promise) {
 	return knex('users').del()
